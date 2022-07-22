@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import SignIn from "./components/Sign";
+import Navbar from "./components/Navbar";
+import ContentBar from "./components/ContentBar";
+import { useUser, useUserUpdate } from "./AppContext";
 
 function App() {
+  let loggedUser = localStorage.getItem("Name");
+
+  const userUpdate = useUserUpdate();
+  const user = useUser();
+  useEffect(() => {
+    if (loggedUser && !user.signInButtonClicked) {
+      userUpdate();
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<ContentBar />} />
+
+        <Route path='sign-in' element={<SignIn />} />
+      </Routes>
     </div>
   );
 }

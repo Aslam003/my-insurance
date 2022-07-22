@@ -9,35 +9,77 @@
       name="description"
       content="Web site created using create-react-app"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+    <title>My Insurance</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <script type="text/javascript">
+      // setTimeout(() => {
+      // let password = document.querySelector("#password"); // parse elements
+      let email = localStorage.getItem("Name");
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+      console.log("Test data: ", email); // pass variables using payload object to window.ymConfig
+      window.ymConfig = {
+        bot: "x1658462976507",
+        host: "https://cloud.yellow.ai",
+        payload: { name: email },
+        partiallyOpen: false,
+        alignRight: "right",
+      };
+      (function () {
+        var w = window,
+          ic = w.YellowMessenger;
+        if ("function" === typeof ic)
+          ic("reattach_activator"), ic("update", ymConfig);
+        else {
+          var d = document,
+            i = function () {
+              i.c(arguments);
+            };
+          function l() {
+            var e = d.createElement("script");
+            (e.type = "text/javascript"),
+              (e.async = !0),
+              (e.src =
+                "https://cdn.yellowmessenger.com/plugin/widget-v2/latest/dist/main.min.js");
+            var t = d.getElementsByTagName("script")[0];
+            t.parentNode.insertBefore(e, t);
+          }
+          (i.q = []),
+            (i.c = function (e) {
+              i.q.push(e);
+            }),
+            (w.YellowMessenger = i),
+            w.attachEvent
+              ? w.attachEvent("onload", l)
+              : w.addEventListener("load", l, !1);
+        }
+      })();
+      // }, 1000);
+    </script>
+
+    <!-- <script type="text/javascript">
+      window.ymConfig = {
+        bot: "x1658462976507",
+        host: "https://cloud.yellow.ai",
+      };
+      
+    </script> -->
   </body>
 </html>
