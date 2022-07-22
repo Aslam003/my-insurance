@@ -15,6 +15,7 @@ function App() {
     if (loggedUser && !user.signInButtonClicked) {
       userUpdate();
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
