@@ -19,7 +19,7 @@ const Navbar = () => {
         <div className='left'>
           <LocalHospitalIcon fontSize='large' />
           <Typography variant='h4' component='h4'>
-            My Insurance
+            Pie Insurance
           </Typography>
         </div>
         <div className='right'>
